@@ -9,8 +9,6 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 
-	"github.com/golang/protobuf/ptypes/timestamp"
-
 	"google.golang.org/protobuf/types/known/structpb"
 
 	"log"
@@ -37,13 +35,7 @@ func main() {
 	msgClient := pb.NewServiceClient(conn)
 	ctx := context.Background()
 
-	t1 := &timestamp.Timestamp{
-		Seconds: 5, // easy to verify
-		Nanos:   6, // easy to verify
-	}
-	slog.Debug("t1", "t1", t1)
-
-	t2, err := structpb.NewStruct(map[string]interface{}{
+	val, err := structpb.NewStruct(map[string]interface{}{
 		"billId":   "123",
 		"amount":   100,
 		"currency": "USD",
@@ -71,7 +63,7 @@ func main() {
 	}
 
 	a := pb.Message{
-		Field: t2,
+		Field: val,
 	}
 
 	slog.Debug("a", "a", a)
