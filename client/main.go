@@ -61,6 +61,10 @@ func main() {
 				"zip":    "62701",
 			},
 		},
+		"customer": map[string]interface{}{
+			"firstName": "John",
+			"lastName":  "Doe",
+		},
 	})
 	if err != nil {
 		slog.Error("Error creating structpb", "error", err)

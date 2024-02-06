@@ -91,5 +91,14 @@ func (s *server) Create(ctx context.Context, in *pb.Message) (*pb.Message, error
 
 	slog.Info("received", "bill", bill, "type", fmt.Sprintf("%T", bill))
 
+	var gen pb.Generic
+	gen = make(map[string]interface{})
+
+	for k, v := range structValue.Fields {
+		gen[k] = v.AsInterface()
+	}
+
+	slog.Info("received", "gen", gen, "type", fmt.Sprintf("%T", gen))
+
 	return in, nil
 }

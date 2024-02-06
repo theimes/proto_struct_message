@@ -13,3 +13,5 @@ type Address struct {
 	State  string `json:"state"`
 	Zip    string `json:"zip"`
 }
+
+type Generic map[string]interface{}
